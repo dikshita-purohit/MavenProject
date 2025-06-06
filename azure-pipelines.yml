@@ -15,7 +15,7 @@ pool:
 steps:
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'myapp/pom.xml'
     goals: 'clean package'
     options: '-B'
     publishJUnitResults: true
