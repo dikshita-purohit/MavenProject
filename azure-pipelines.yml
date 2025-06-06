@@ -8,7 +8,7 @@ trigger:
 pool:
   name: Default
   demands:
-    - agent.name -equals maxw3068@gmail.com
+    - agent.name -equals DESKTOP-34IVLBA
   vmImage: ubuntu-latest
 
 steps:
