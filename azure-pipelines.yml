@@ -9,8 +9,8 @@ pool:
   name: Default
   demands:
     - agent.name -equals DESKTOP-34IVLBA
+    - MAVEN_HOME
     - Agent.Version -gtVersion 4.255.0
-  vmImage: ubuntu-latest
 
 steps:
 - task: Maven@3
@@ -18,7 +18,7 @@ steps:
     mavenPomFile: 'pom.xml'
     goals: 'clean package'
     options: '-B'
-    PublishJUnitResults: true
+    publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.17'
@@ -26,7 +26,7 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
 
-- task: Publishtestresults@2
+- task: PublishTestResults@2
   inputs: 
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     testRunTitle: 'JUnit test results'
