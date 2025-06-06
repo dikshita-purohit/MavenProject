@@ -9,7 +9,6 @@ pool:
   name: Default
   demands:
     - agent.name -equals DESKTOP-34IVLBA
-    - maven
     - Agent.Version -gtVersion 4.255.0
   vmImage: ubuntu-latest
 
