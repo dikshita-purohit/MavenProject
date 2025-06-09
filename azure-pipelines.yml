@@ -5,7 +5,6 @@ pool:
   name: Default
   demands:
     - agent.name -equals 3LAB01013
-      MAVEN_HOME
     - Agent.Version -gtVersion 4.255.0
 
 steps:
