@@ -1,34 +1,30 @@
 trigger:
-- master
+  - master
 
 pool:
   name: Default
-  demands:
-    - agent.name -equals 3LAB01013
-      maven:MAVEN_HOME
-    - Agent.Version -gtVersion 4.255.0
 
 steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'myapp/pom.xml'
-    goals: 'clean package'
-    options: '-B'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.17'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'myapp/pom.xml'
+      goals: 'clean package'
+      options: '-B'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.17'
+      mavenVersionOption: 'Default'
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
 
-- task: PublishTestResults@2
-  inputs: 
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    testRunTitle: 'JUnit test results'
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      testRunTitle: 'JUnit test results'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'myapp/target'
-    ArtifactName: 'MyArtifact'
-    publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'myapp/target'
+      ArtifactName: 'MyArtifact'
+      publishLocation: 'Container'
